@@ -1,3 +1,9 @@
+###v0.2 - 2018-01-03
+
+- Update question pool population + timing
+- Implement AVERAGE_TIME_CHANGED event
+- answerQuestion now returns boolean for correct/incoorect answer
+
 ###v0.1 - 2018-01-03
 
-Initial draft
+- Initial draft
