@@ -1,0 +1,19 @@
+{
+  "name": "mathgames-js",
+  "version": "0.0.2",
+  "description": "A javascript API for interacting with MathGames",
+  "main": "./dist/mathgames-api.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeachMeInc/mathgames-js.git"
+  },
+  "keywords": [
+    "mathgames"
+  ],
+  "author": "Rhys Jones",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TeachMeInc/mathgames-js/issues"
+  },
+  "homepage": "https://github.com/TeachMeInc/mathgames-js#readme"
+}
