@@ -37,7 +37,7 @@ var api = require('mathgames-js');
         <canvas id="gameCanvas" width="800" height="600"></canvas>
     </div>
   </body>
-  <link rel="stylesheet" type="text/css" href="https://cdn.mathgames.com/api/dist/latest/mathgames-api.js">
+  <script src="https://cdn.mathgames.com/api/dist/latest/mathgames-api.js"></script>
 </html>
 ```
 
