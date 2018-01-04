@@ -71,28 +71,28 @@ var api = require('mathgames-js');
 
 ## Methods
 
-| Methods        | Parameters                                           | Returns                                 | Description                             |
-|----------------|------------------------------------------------------|-----------------------------------------|-----------------------------------------|
-| getInstance    | `{ api_key: <string>, wrapper: <DOMElement> }`       |  A new instance of the MathGames API    | The wrapper is a DOMElement which wraps the game canvas and is used to add api interface elements over the canvas. |
+Methods | Parameters | Returns | Description
+---|---|---|---
+getInstance | ```{ api_key: <string>, wrapper: <DOMElement> }``` |  A new instance of the MathGames API | The wrapper is a DOMElement which wraps the game canvas and is used to add api interface elements over the canvas. |
 
-| Methods        | Parameters                                           | Returns                                 | Description                             |
-|----------------|------------------------------------------------------|-----------------------------------------|-----------------------------------------|
-| selectSkill    | -                                                    | -                                       | Display the select skill dialog to the user                   |
-| startSession   | `{ pool_key: <string>}`                              | -                                       | Starts the session. Requires a pool_key (generally 'COMPLETE').  startSession should only be called after the SKILL_SELECTED event. |
-| getQuestion    | -                                                    | QuestionObject *see notes below*        | Returns a new question.                 |
-| answerQuestion | index: *number*                                      | -                                       | The index parameter is the index of the question choice that was answered |
-| showProgress   | -                                                    | -                                       | Display the progress dialog             |
-| endSession     | -                                                    | -                                       | Ends the session.                       |
+Methods | Parameters | Returns | Description
+---|---|---|---
+selectSkill    | -| -| Display the select skill dialog to the user
+startSession   |```{ pool_key: <string>}```| - | Starts the session. Requires a pool_key (generally 'COMPLETE').  startSession should only be called after the SKILL_SELECTED event.
+getQuestion    | - | QuestionObject *see notes below* | Returns a new question.
+answerQuestion | index: *number*| -| The index parameter is the index of the question choice that was answered
+showProgress   | -| - | Display the progress dialog
+endSession     | -| - | Ends the session.
 
 ## Events
 
-| Event          | Description                                          |
-|----------------|------------------------------------------------------|
-| SKILL_SELECTED   | The user has selected a skill, startSession can be called                             |
-| SESSION_READY    | Session is ready.  getQuestion can be called.                                                    |
-| SKILL_CHANGED    | -                                                    |
-| PROGRESS_CLOSED | The user has closed the progress dialog                                     |
-| AVERAGE_TIME_CHANGE   | The average time has changed |
+Event | Description
+---|---
+SKILL_SELECTED   | The user has selected a skill, startSession can be called
+SESSION_READY    | Session is ready.  getQuestion can be called.
+SKILL_CHANGED    | The user has selected a different skill.  This event will fire only if selectSkill is called during an active session.
+PROGRESS_CLOSED | The user has closed the progress dialog
+AVERAGE_TIME_CHANGE   | The average time has changed
 
 
 ## Question Object
