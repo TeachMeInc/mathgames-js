@@ -18,7 +18,7 @@ javascript: https://cdn.mathgames.com/api/dist/latest/mathgames-api.js
 
 css: https://cdn.mathgames.com/api/dist/latest/mathgames-api.css
 
-##Usage
+## Usage
 
 This snippet uses the CDN configuration, you can also include the api as a module in your game. For example: 
 ```
