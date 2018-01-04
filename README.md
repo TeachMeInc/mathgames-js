@@ -4,7 +4,7 @@ MathGames API for Javascript
 
 ## Install
 
-### #NPM
+#### NPM
 
 ```
 npm install mathgames-js
