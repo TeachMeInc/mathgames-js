@@ -18,57 +18,6 @@ javascript: https://cdn.mathgames.com/api/dist/latest/mathgames-api.js
 
 css: https://cdn.mathgames.com/api/dist/latest/mathgames-api.css
 
-## Usage
-
-This snippet uses the CDN configuration, you can also include the api as a module in your game. For example: 
-```
-var api = require('mathgames-js');
-```
-
-#### example HTML
-
-```
-<html>
-  <head>
-     <link rel="stylesheet" type="text/css" href="https://cdn.mathgames.com/api/dist/latest/mathgames-api.css">
-  </head>
-  <body>
-    <div id="mathgames-api-wrapper">
-        <canvas id="gameCanvas" width="800" height="600"></canvas>
-    </div>
-  </body>
-  <script src="https://cdn.mathgames.com/api/dist/latest/mathgames-api.js"></script>
-</html>
-```
-
-#### example JS
-
-```    
-      //get instance
-      var question = null;
-      var api = MathGamesAPI.getInstance({
-        wrapper: document.getElementById('mathgames-api-wrapper'),
-        api_key: '<api-key>'
-      });
-      
-      //listen to events
-      api.on(this.api.SESSION_READY, function() {
-        ...
-        question = api.getQuestion();
-      });
-      
-      //select skill (must be called before startSession);
-      api.selectSkill({pool_key: 'COMPLETE'});
-      
-      //answer a question
-      gameApp.onAnswer(function(index) {
-        var correct = api.answerQuestion(index);
-        //handle correct or incorrect answer in game
-        question = api.getQuestion(); //get the next question
-      });
-
-```
-
 ## Methods
 
 Methods | Parameters | Returns | Description
@@ -114,6 +63,14 @@ The question object has the image data needed to display the question using the 
 
 The display image is for the the display of the question and the choices image array are used for choice display.  When the user selects a choice in game and the answerQuestion method is called, the index should match the index of the image in the choices array.
 
+#### Example
 
+To run the example, from the example directory, run:
+
+```
+  npm install
+  npm run build
+```
+Open the file example/index.html in your browser.
 
 
