@@ -1,6 +1,6 @@
 {
   "name": "mathgames-js",
-  "version": "0.0.5",
+  "version": "0.1",
   "description": "A javascript API for interacting with MathGames",
   "main": "./dist/mathgames-api.js",
   "repository": {
