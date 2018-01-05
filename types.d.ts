@@ -4,12 +4,16 @@ declare module 'mathgames-api' {
         interface InstanceConfig {
           api_key: string,
           wrapper: HTMLElement
-        }
+        };
+
+        interface SelectSkillConfig {
+          pool_key: string
+        };
 
         interface Question {
           display: string,
           choices: string[]
-        }
+        };
 
         type SkillSelectedListener = () => void;
         type SessionReadyListener = () => void;
@@ -23,15 +27,15 @@ declare module 'mathgames-api' {
           onSkillChanged?: SkillChangedListener,
           onProgressClosed?: ProgressClosedListener,
           onAverageTimeChange?: AverageTimeChangeListener,
-          selectSkill: () => void,
-          startSession: (pool_key: string) => void,
+          selectSkill: (options: SelectSkillConfig) => void,
+          startSession: () => void,
           getQuestion: () => Question,
           answerQuestion: (index: number) => boolean,
           showProgress: () => void,
           endSession: () => void
         };
 
-        const getInstance: (config: InstanceConfig) => APIInstance;
+        const getInstance: (options: InstanceConfig) => APIInstance;
 
     }
 
