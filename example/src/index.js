@@ -19,28 +19,28 @@ module.exports = {
           wrapper: this.options.wrapper
       });
 
-      this.api.on(this.api.SKILL_SELECTED, function() {
+      this.api.onSkillSelected = function() {
           console.log('SKILL_SELECTED');
           self.api.startSession();
-      });
+      };
 
-      this.api.on(this.api.SESSION_READY, function() {
+      this.api.onSessionReady = function() {
           console.log("SESSION_READY");
           self.startQuestionLoop();
-      });
+      };
 
-      this.api.on(this.api.SKILL_CHANGED, function() {
+      this.api.onSkillChanged = function() {
           console.log("SKILL_CHANGED");
-      });
+      };
 
-      this.api.on(this.api.AVERAGE_TIME_CHANGE, function() {
+      this.api.onAverageTimeChange = function() {
           console.log("AVERAGE_TIME_CHANGE");
-      });
+      };
 
-      this.api.on(this.api.PROGRESS_CLOSED, function() {
+      this.onProgressClosed = function() {
           console.log("PROGRESS_CLOSED");
           self.api.endSession();
-      });
+      };
 
       this.startGame();
   },
