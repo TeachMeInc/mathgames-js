@@ -75,6 +75,8 @@ Methods | Parameters | Returns | Description
 ---|---|---|---
 getInstance | ```{ api_key: <string>, wrapper: <DOMElement> }``` |  A new instance of the MathGames API | The wrapper is a DOMElement which wraps the game canvas and is used to add api interface elements over the canvas. |
 
+## Instance methods
+
 Methods | Parameters | Returns | Description
 ---|---|---|---
 selectSkill    | -| -| Display the select skill dialog to the user
@@ -86,13 +88,13 @@ endSession     | -| - | Ends the session.
 
 ## Events
 
-Event | Description
----|---
-SKILL_SELECTED   | The user has selected a skill, startSession can be called
-SESSION_READY    | Session is ready.  getQuestion can be called.
-SKILL_CHANGED    | The user has selected a different skill.  This event will fire only if selectSkill is called during an active session.
-PROGRESS_CLOSED | The user has closed the progress dialog
-AVERAGE_TIME_CHANGE   | The average time has changed
+Methods | Parameters | Returns | Description
+---|---|---|---
+onSkillSelected| -| -| The user has selected a skill, startSession can be called
+onSessionReady| -| -|Session is ready.  getQuestion can be called.
+onSkillChanged| -| -|The user has selected a different skill.  This event will fire only if selectSkill is called during an active session.
+onProgressClosed| -| -|The user has closed the progress dialog
+onAverageTimeChange| -| avgTime: *number* |The average time has changed
 
 
 ## Question Object
