@@ -10,14 +10,6 @@ MathGames API for Javascript
 npm install mathgames-js
 ```
 
-#### CDN
-
-The Math Games APi is also available from CDN.
-
-javascript: https://cdn.mathgames.com/api/dist/latest/mathgames-api.js
-
-css: https://cdn.mathgames.com/api/dist/latest/mathgames-api.css
-
 ## Methods
 
 Methods | Parameters | Returns | Description
@@ -72,5 +64,3 @@ To run the example, from the example directory, run:
   npm run build
 ```
 Open the file example/index.html in your browser.
-
-

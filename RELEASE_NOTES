@@ -1,3 +1,12 @@
+###v0.1.2 - 2018-01-05
+
+- Fix types.d.ts
+
+###v0.1.1 - 2018-01-05
+
+- Switch from events to callbacks
+- Add types.d.ts
+
 ###v0.1 - 2018-01-05
 
 - fix click target on skill selectSkill
