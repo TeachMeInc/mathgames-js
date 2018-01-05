@@ -23,12 +23,12 @@ declare module 'mathgames-api' {
           onSkillChanged?: SkillChangedListener,
           onProgressClosed?: ProgressClosedListener,
           onAverageTimeChange?: AverageTimeChangeListener,
-          selectSkill: () => void;
-          startSession: (pool_key: string) => void;
-          getQuestion: () => Question;
-          answerQuestion: (index: number) => boolean;
-          showProgress: () => void;
-          endSession: () => void;
+          selectSkill: () => void,
+          startSession: (pool_key: string) => void,
+          getQuestion: () => Question,
+          answerQuestion: (index: number) => boolean,
+          showProgress: () => void,
+          endSession: () => void
         };
 
         const getInstance: (config: InstanceConfig) => APIInstance;
