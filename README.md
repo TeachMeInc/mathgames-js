@@ -39,11 +39,11 @@ endSession     | -| - | Ends the session.
 
 Methods | Parameters | Returns | Description
 ---|---|---|---
-onSkillSelected| -| -| The user has selected a skill, startSession can be called
-onSessionReady| -| -|Session is ready.  getQuestion can be called.
-onSkillChanged| -| -|The user has selected a different skill.  This event will fire only if selectSkill is called during an active session.
-onProgressClosed| -| -|The user has closed the progress dialog
-onAverageTimeChange| -| avgTime: *number* |The average time has changed
+SKILL_SELECTED | -| -| The user has selected a skill, startSession can be called
+SESSION_READY| -| -|Session is ready.  getQuestion can be called.
+SKILL_CHANGED| -| -|The user has selected a different skill.  This event will fire only if selectSkill is called during an active session.
+PROGRESS_CLOSED| -| -|The user has closed the progress dialog
+AVERAGE_TIME_CHANGE| -| avgTime: *number* |The average time has changed
 
 
 ## Question Object
