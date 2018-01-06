@@ -19,28 +19,28 @@ module.exports = {
           wrapper: this.options.wrapper
       });
 
-      this.api.onSkillSelected = function() {
+      this.api.on('SKILL_SELECTED', function() {
           console.log('SKILL_SELECTED');
           self.api.startSession();
-      };
+      });
 
-      this.api.onSessionReady = function() {
+      this.api.on('SESSION_READY', function() {
           console.log("SESSION_READY");
           self.startQuestionLoop();
-      };
+      });
 
-      this.api.onSkillChanged = function() {
+      this.api.on('SKILL_CHANGED', function() {
           console.log("SKILL_CHANGED");
-      };
+      });
 
-      this.api.onAverageTimeChange = function() {
+      this.api.on('AVERAGE_TIME_CHANGE', function() {
           console.log("AVERAGE_TIME_CHANGE");
-      };
+      });
 
-      this.onProgressClosed = function() {
+      this.api.on('PROGRESS_CLOSED', function() {
           console.log("PROGRESS_CLOSED");
           self.api.endSession();
-      };
+      });
 
       this.startGame();
   },
@@ -50,7 +50,7 @@ module.exports = {
   },
 
   startQuestionLoop() {
-      //100 questions, then show the progress dialog
+      //30 questions, then show the progress dialog
       var self = this;
       var totalCount = 30;
       var answeredCount = 0;
