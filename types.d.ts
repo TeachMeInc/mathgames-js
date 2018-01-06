@@ -10,23 +10,21 @@ declare module 'mathgames-api' {
           pool_key: string
         };
 
+        type APIEventType =
+            'SESSION_READY'
+          | 'SKILL_SELECTED'
+          | 'SKILL_CHANGED'
+          | 'PROGRESS_CLOSED'
+          | 'AVERAGE_TIME_CHANGE';
+
         interface Question {
           display: string,
           choices: string[]
         };
 
-        type SkillSelectedListener = () => void;
-        type SessionReadyListener = () => void;
-        type SkillChangedListener = () => void;
-        type ProgressClosedListener = () => void;
-        type AverageTimeChangeListener = (time: number) => void;
-
         interface APIInstance {
-          onSkillSelected?: SkillSelectedListener,
-          onSessionReady?: SessionReadyListener,
-          onSkillChanged?: SkillChangedListener,
-          onProgressClosed?: ProgressClosedListener,
-          onAverageTimeChange?: AverageTimeChangeListener,
+          on: (event: APIEventType, listener: Function) => APIInstance,
+          off: (event: APIEventType, listener: Function) => APIInstance,
           selectSkill: (options: SelectSkillConfig) => void,
           startSession: () => void,
           getQuestion: () => Question,
