@@ -15,7 +15,9 @@ declare module 'mathgames-api' {
           | 'SKILL_SELECTED'
           | 'SKILL_CHANGED'
           | 'PROGRESS_CLOSED'
-          | 'AVERAGE_TIME_CHANGE';
+          | 'AVERAGE_TIME_CHANGE'
+          | 'AVAILABLE_STANDARDS_CLOSED'
+          | 'ERROR';
 
         interface Question {
           display: string,
