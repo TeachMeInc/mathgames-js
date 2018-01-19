@@ -33,6 +33,7 @@ startSession   |```{ pool_key: <string>}```| - | Starts the session. Requires a 
 getQuestion    | - | QuestionObject *see notes below* | Returns a new question.
 answerQuestion | index: *number*| -| The index parameter is the index of the question choice that was answered
 showProgress   | -| - | Display the progress dialog
+showAvailableStandards   | -| - | Display the progress dialog
 endSession     | -| - | Ends the session.
 
 ## Events
@@ -43,6 +44,7 @@ SKILL_SELECTED|-| The user has selected a skill, startSession can be called
 SESSION_READY|-|Session is ready.  getQuestion can be called.
 SKILL_CHANGED|-|The user has selected a different skill.  This event will fire only if selectSkill is called during an active session.
 PROGRESS_CLOSED|-|The user has closed the progress dialog
+AVAILABLE_STANDARDS_CLOSED|-|The user has closed the available standards dialog
 AVERAGE_TIME_CHANGE|avgTime: *number* |The average time has changed
 
 
@@ -62,13 +64,3 @@ The question object has the image data needed to display the question using the 
 ```
 
 The display image is for the the display of the question and the choices image array are used for choice display.  When the user selects a choice in game and the answerQuestion method is called, the index should match the index of the image in the choices array.
-
-#### Example
-
-To run the example, from the example directory, run:
-
-```
-  npm install
-  npm run build
-```
-Open the file example/index.html in your browser.
