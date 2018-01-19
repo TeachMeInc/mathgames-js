@@ -1,0 +1,58 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.api-wrapper {
+  flex: 1 1 80%;
+  * {
+      user-select: none;
+  }
+}
+
+.btn-pause {
+  display: none;
+  position: absolute;
+  top: 0.2em;
+  right: 0.2em;
+  background-color: #0064a0;
+  border: 1px solid #fff;
+  line-height: 2em;
+  color: #fff;
+  padding: 0em 0.5em;
+  font-size: 1.4em;
+  cursor: pointer;
+}
+
+.btn-pause:hover {
+  background-color: #fff;
+  color: #0064a0;
+  border: 1px solid #0064a0;
+}
+
+.pause-dialog {
+  display: none;
+  position: absolute;
+  width: 300px;
+  border: 1px solid #0064a0;
+  padding: 1em;
+  background-color: #0064a0;
+  border-radius: 0.5em;
+}
+
+.btn {
+  cursor: pointer;
+  border: 1px solid #efefef;
+  background-color: #fff;
+  font-size: 1em;
+  height: 2em;
+  line-height: 2em;
+  width: 80%;
+  margin: 0.5em auto;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #efefef;
+}

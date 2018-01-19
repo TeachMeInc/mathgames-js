@@ -1,0 +1,356 @@
+<html>
+  <head>
+      <title>MathGames JS API Example - CDN</title>
+      <link rel="stylesheet" type="text/css" href="./example.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.mathgames.com/api/dist/latest/mathgames-api.css">
+  </head>
+  <body>
+      <div id="mathgames-api-wrapper" class="api-wrapper">
+          <canvas id="game-canvas"></canvas>
+          <div id="btn-pause" class="btn-pause">Pause</div>
+          <div id="pause-dialog" class="pause-dialog">
+            <div id="btn-show-progress" class="btn">View Progress</div>
+            <div id="btn-change-skill" class="btn">Change Skill</div>
+            <div id="btn-available-standards" class="btn">View Available Standards</div>
+            <div id="btn-end-game" class="btn">End Game</div>
+            <div id="btn-close-pause" class="btn">Close</div>
+          </div>
+      </div>
+  </body>
+
+  <script src="https://cdn.mathgames.com/api/dist/latest/mathgames-api.js"></script>
+  <script>
+
+      var wrapper =  document.getElementById('mathgames-api-wrapper');
+      var gameCanvas = document.getElementById('game-canvas');
+      var gameContext = gameCanvas.getContext('2d');
+
+      document.addEventListener('DOMContentLoaded', function() {
+
+//-------- Create MathGames API Instance ---------------------------------------
+
+          var api = MathGamesAPI.getInstance({
+              wrapper: document.getElementById('mathgames-api-wrapper'),
+              api_key: '528e1abeb4967cb32b00028e'
+          });
+
+//-------- Example Game --------------------------------------------------------
+// Simple game example to demonstrate MathGames API functions
+
+          var game = {
+
+              currentQuestion: null,
+              isResizing: false,
+
+              init: function() {
+                  this.setCanvasSize();
+              },
+
+              // When the games starts, call the MathgGames API selectSkill method
+              start: function() {
+                  api.selectSkill({pool_key: 'COMPLETE'});
+              },
+
+              resize: function() {
+                  var self = this;
+
+                  if (this.isResizing !== false) {
+                      clearTimeout(this.isResizing);
+                  }
+
+                  this.isResizing = setTimeout(function() {
+                      self.setCanvasSize();
+                      api.resize();
+                      if(self.currentQuestion) {
+                          self.renderQuestion();
+                      }
+                  }, 400); // Resize is throttled using timeout
+              },
+
+              pause: function() {
+                  gameContext.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+                  this.currentQuestion = null;
+              },
+
+              setCanvasSize: function() {
+                  gameCanvas.height = wrapper.offsetHeight;
+                  gameCanvas.width = wrapper.offsetWidth;
+              },
+
+              renderQuestion: function() {
+                  gameContext.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+                  this.renderQuestionDisplay();
+                  this.renderQuestionChoices();
+              },
+
+              // Render question display to the canvas
+              renderQuestionDisplay: function() {
+                  var self = this;
+                  var displayImage = new Image();
+                  var displayWidth = gameCanvas.width * 0.80;
+                  var displayHeight = gameCanvas.height * 0.18;
+                  displayImage.src = this.currentQuestion.display;
+                  displayImage.onload = function() {
+                      var widthScale = Math.min(displayImage.width, displayWidth) / displayImage.width;
+                      var heightScale = displayHeight / displayImage.height;
+                      var scale = Math.min(widthScale, heightScale);
+                      var w = scale * displayImage.width;
+                      var h = scale * displayImage.height;
+                      var x = (gameCanvas.width - w) / 2;
+                      var y = (gameCanvas.height * 0.80) + ((gameCanvas.height * 0.20 - h)/2);
+                      gameContext.fillStyle = '#efefef';
+                      gameContext.fillRect(0, gameCanvas.height * 0.75, gameCanvas.width, gameCanvas.height * 0.25);
+                      gameContext.drawImage(displayImage, x, y, w, h);
+                  };
+              },
+
+              renderQuestionChoices: function() {
+                  for (var i = 0; i < this.currentQuestion.choices.length; i++) {
+                      this.renderChoice(i, false);
+                  }
+              },
+
+              // Render question choice to the canvas
+              renderChoice: function(index, active) {
+                  var choiceImage = new Image();
+                  var choiceContainers = this.getChoiceBounds();
+                  var choiceColours = [
+                      '#FF0000',
+                      '#0033cc',
+                      '#009933',
+                      '#ff9900'
+                  ];
+
+                  choiceImage.src = this.currentQuestion.choices[index];
+                  choiceImage.onload = function() {
+                      var container = choiceContainers[index];
+                      var optWidth = Math.min(choiceImage.width, container.w);
+                      var optHeight = (optWidth / choiceImage.width) * choiceImage.height;
+                      var choiceBounds = {
+                          x: container.x + ((container.w/2) - (optWidth/2)),
+                          y: container.y + ((container.h/2) - (optHeight/2)),
+                          w: optWidth,
+                          h: optHeight
+                      };
+                      gameContext.clearRect(container.x, container.y, container.w, container.h);
+                      if(active === true) {
+                          gameContext.fillStyle = choiceColours[index];
+                          gameContext.fillRect(container.x, container.y, container.w, container.h);
+                      } else {
+                          gameContext.strokeStyle = choiceColours[index];
+                          gameContext.strokeRect(container.x, container.y, container.w, container.h);
+                      }
+                      gameContext.drawImage(choiceImage, choiceBounds.x, choiceBounds.y, choiceBounds.w, choiceBounds.h);
+                  };
+              },
+
+              getNextQuestion: function() {
+
+                  // Get the next question from the MathGames API
+                  this.currentQuestion = api.getQuestion();
+
+                  this.renderQuestion(this.currentQuestion);
+                  this.showPausebutton();
+              },
+
+              answerQuestion: function(choiceIndex) {
+
+                  // Answer a question, using the index of the choice selected
+                  var correct = api.answerQuestion(choiceIndex);
+
+                  this.getNextQuestion();
+              },
+
+              getChoiceBounds: function() {
+                  var gameHeight = gameCanvas.height;
+                  var gameWidth = gameCanvas.width;
+                  var contWidth = gameWidth * 0.40;
+                  var contHeight = gameHeight * 0.20;
+                  return [
+                      { x: gameWidth * 0.05, y: gameHeight * 0.20, w: contWidth, h: contHeight},
+                      { x: gameWidth * 0.55, y: gameHeight * 0.20, w: contWidth, h: contHeight},
+                      { x: gameWidth * 0.05, y: gameHeight * 0.50, w: contWidth, h: contHeight},
+                      { x: gameWidth * 0.55, y: gameHeight * 0.50, w: contWidth, h: contHeight}
+                  ];
+              },
+
+              withinChoiceBounds: function(event) {
+
+                  var self = this;
+                  var containers = this.getChoiceBounds();
+
+                  var checkBounds = function(index) {
+                      var thisContainer = containers[index];
+                      if( event.clientX >= thisContainer.x &&
+                          event.clientX <= thisContainer.x + thisContainer.w &&
+                          event.clientY >= thisContainer.y &&
+                          event.clientY <= thisContainer.y + thisContainer.h
+                      ) {
+                          return i;
+                      }
+                      return null;
+                  };
+
+                  for (var i = 0; i < containers.length; i++) {
+                      if(checkBounds(i) !== null) {
+                          return i;
+                      }
+                  }
+
+                  return null;
+              },
+
+              clickHandler: function(event) {
+                  if(this.currentQuestion) {
+                      var clickedChoice = this.withinChoiceBounds(event);
+                      if(clickedChoice !== null) {
+                          this.answerQuestion(clickedChoice);
+                      }
+                  }
+              },
+
+              mouseMoveHandler: function(event) {
+                  if(this.currentQuestion) {
+                      var hoverChoice = this.withinChoiceBounds(event);
+                      if(hoverChoice !== null) {
+                          gameCanvas.style.cursor = 'pointer';
+                          this.renderChoice(hoverChoice, true);
+                      } else {
+                          gameCanvas.style.cursor = null;
+                          this.renderQuestionChoices();
+                      }
+                  }
+              },
+
+              showPauseDialog: function() {
+                  var dialogEl = document.getElementById('pause-dialog');
+                  var btnEl = document.getElementById('btn-pause');
+                  btnEl.style.display = 'none';
+                  dialogEl.style.display = 'block';
+                  var top = (wrapper.offsetHeight - dialogEl.offsetHeight) / 2;
+                  var left = (wrapper.offsetWidth - dialogEl.offsetWidth) / 2;
+                  dialogEl.style.top = top + 'px';
+                  dialogEl.style.left = left + 'px';
+              },
+
+              hidePauseDialog: function() {
+                  var dialogEl = document.getElementById('pause-dialog');
+                  dialogEl.style.display = 'none';
+              },
+
+              showPausebutton: function() {
+                  var btnEl = document.getElementById('btn-pause');
+                  btnEl.style.display = 'block';
+              },
+
+              hidePauseButton: function() {
+                  var btnEl = document.getElementById('btn-pause');
+                  btnEl.style.display = 'none';
+              }
+
+          };
+
+//-------- DOM Event Listeners ---------------------------------------------
+// DOM Event Listeners used by the game
+
+          gameCanvas.addEventListener('click', function(event) {
+              game.clickHandler(event);
+          });
+
+          gameCanvas.addEventListener('mousemove', function(event) {
+              game.mouseMoveHandler(event);
+          });
+
+          window.addEventListener('resize', function() {
+              game.resize();
+          });
+
+          document.getElementById('btn-pause').addEventListener('click', function() {
+              game.hidePauseButton();
+              game.pause();
+              game.showPauseDialog();
+          });
+
+          document.getElementById('btn-close-pause').addEventListener('click', function() {
+              game.hidePauseDialog();
+              game.getNextQuestion();
+          });
+
+          // When the game is ended, call MathGames API endSession method
+          document.getElementById('btn-end-game').addEventListener('click', function() {
+              game.hidePauseDialog();
+              api.endSession();
+              game.start();
+          });
+
+          // Show the MathGames API select skill dialog
+          // API will emit a SKILL_CHANGED event once the user has selected a skill
+          document.getElementById('btn-change-skill').addEventListener('click', function() {
+              game.hidePauseDialog();
+              api.selectSkill({pool_key: 'COMPLETE'});
+          });
+
+          // Show the MathGames API available standards dialog
+          // API will emit a AVAILABLE_STANDARDS_CLOSED event once user closes the dialog
+          document.getElementById('btn-available-standards').addEventListener('click', function() {
+              game.hidePauseDialog();
+              api.showAvailableStandards();
+          });
+
+          // Show the MathGames API progress dialog
+          // API will emit a PROGRESS_CLOSED event once user closes the dialog
+          document.getElementById('btn-show-progress').addEventListener('click', function() {
+              game.hidePauseDialog();
+              api.showProgress();
+          });
+
+//-------- MathGames API Listeners ---------------------------------------------
+// API Listeners for MathGames events
+
+          // An initial skill has been selected, start the session
+          // startSession can only be called after the skill_selected event has occurred
+          api.on('SKILL_SELECTED', function() {
+              this.startSession();
+          });
+
+          // The session is ready to provide questions, using the MathGames API getQuestion method
+          api.on('SESSION_READY', function() {
+              game.getNextQuestion();
+          });
+
+          // The skill has changed, MathGames API getQuestion method will return a new type of question
+          api.on('SKILL_CHANGED', function() {
+              game.getNextQuestion();
+          });
+
+          // The average time is how quickly the average player answers the current type of question
+          // The time (in ms) can be used to tune game speed based on the question type
+          api.on('AVERAGE_TIME_CHANGE', function(time) {
+              console.log('average time changed to:' + time);
+          });
+
+          // The progress dialog has closed
+          api.on('PROGRESS_CLOSED', function() {
+              game.getNextQuestion();
+          });
+
+          // The available standards dialog has closed
+          api.on('AVAILABLE_STANDARDS_CLOSED', function() {
+              game.getNextQuestion();
+          });
+
+          // An API error has occurred
+          api.on('ERROR', function(error) {
+              console.log('API ERROR: ' + error);
+          });
+
+//-------- Start the Game ------------------------------------------------------
+
+          game.init();
+          game.start();
+
+      });
+
+  </script>
+
+</html>
