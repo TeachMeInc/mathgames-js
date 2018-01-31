@@ -17,6 +17,10 @@ declare module 'mathgames-api' {
           choices: rgbaColor[];
         };
 
+        interface SessionConfig {
+          colors: ColorConfig
+        };
+
         type APIEventType =
             'SESSION_READY'
           | 'SKILL_SELECTED'
