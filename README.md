@@ -28,8 +28,8 @@ getInstance | ```{ api_key: <string>, wrapper: <DOMElement> }``` |  A new instan
 
 Methods | Parameters | Returns | Description
 ---|---|---|---
-selectSkill    | -| -| Display the select skill dialog to the user
-startSession   |```{ pool_key: <string>}```| - | Starts the session. Requires a pool_key (generally 'COMPLETE').  startSession should only be called after the SKILL_SELECTED event.
+selectSkill    |```{ pool_key: <string>}```| -| Display the select skill dialog to the user. Requires a pool_key (generally 'COMPLETE').
+startSession   | see session options | - | Starts the session. StartSession should only be called after the SKILL_SELECTED event.
 getQuestion    | - | QuestionObject *see notes below* | Returns a new question.
 answerQuestion | index: *number*| -| The index parameter is the index of the question choice that was answered
 showProgress   | -| - | Display the progress dialog
@@ -46,6 +46,28 @@ SKILL_CHANGED|-|The user has selected a different skill.  This event will fire o
 PROGRESS_CLOSED|-|The user has closed the progress dialog
 AVAILABLE_STANDARDS_CLOSED|-|The user has closed the available standards dialog
 AVERAGE_TIME_CHANGE|avgTime: *number* |The average time has changed
+
+## Session Options
+
+The startSession method accepts an object defining options to be used when rendering the question images.
+
+The colors options acccept rgba colors in the form [red, blue, green, alpha]
+
+Example:
+
+```
+{
+    colors: {
+        question: [12, 33, 169, 1], //blue
+        choices: [
+            [169, 12, 12, 1], //red
+            [11, 21, 161, 1], //blue
+            [23, 172, 63, 1], //green
+            [216, 144, 0, 1] //orange
+        ]
+    }
+}
+```
 
 
 ## Question Object
