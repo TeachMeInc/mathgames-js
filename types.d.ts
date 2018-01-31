@@ -10,6 +10,13 @@ declare module 'mathgames-api' {
           pool_key: string
         };
 
+        type rgbaColor = [number, number, number, number];
+
+        interface ColorConfig {
+          question: rgbaColor;
+          choices: rgbaColor[];
+        };
+
         type APIEventType =
             'SESSION_READY'
           | 'SKILL_SELECTED'
