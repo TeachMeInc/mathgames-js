@@ -39,7 +39,7 @@ declare module 'mathgames-api' {
           on: (event: APIEventType, listener: Function) => APIInstance,
           off: (event: APIEventType, listener: Function) => APIInstance,
           selectSkill: (options: SelectSkillConfig) => void,
-          startSession: () => void,
+          startSession: (options?: SessionConfig) => void,
           getQuestion: () => Question,
           answerQuestion: (index: number) => boolean,
           showProgress: () => void,
