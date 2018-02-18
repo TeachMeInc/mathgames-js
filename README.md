@@ -11,7 +11,7 @@ npm install mathgames-js
 ```
 
 #### CDN		
-		
+
 The Math Games APi is also available from CDN.				
 
 javascript: https://cdn.mathgames.com/api/dist/latest/mathgames-api.js
@@ -22,15 +22,15 @@ css: https://cdn.mathgames.com/api/dist/latest/mathgames-api.css
 
 Methods | Parameters | Returns | Description
 ---|---|---|---
-getInstance | ```{ api_key: <string>, wrapper: <DOMElement> }``` |  A new instance of the MathGames API | The wrapper is a DOMElement which wraps the game canvas and is used to add api interface elements over the canvas. |
+getInstance | ```{ api_key: <string>, wrapper: <DOMElement>, debug: <boolean> }``` |  A new instance of the MathGames API | The wrapper is a DOMElement which wraps the game canvas and is used to add api interface elements over the canvas. |
 
 ## Instance methods
 
 Methods | Parameters | Returns | Description
 ---|---|---|---
 selectSkill    |```{ pool_key: <string>}```| -| Display the select skill dialog to the user. Requires a pool_key (generally 'COMPLETE').
-startSession   | see session options | - | Starts the session. StartSession should only be called after the SKILL_SELECTED event.
-getQuestion    | - | QuestionObject *see notes below* | Returns a new question.
+startSession   | - | - | Starts the session. StartSession should only be called after the SKILL_SELECTED event.
+getQuestion    | see question options | QuestionObject *see notes below* | Returns a new question.
 answerQuestion | index: *number*| -| The index parameter is the index of the question choice that was answered
 showProgress   | -| - | Display the progress dialog
 showAvailableStandards   | -| - | Display the progress dialog
@@ -47,9 +47,9 @@ PROGRESS_CLOSED|-|The user has closed the progress dialog
 AVAILABLE_STANDARDS_CLOSED|-|The user has closed the available standards dialog
 AVERAGE_TIME_CHANGE|avgTime: *number* |The average time has changed
 
-## Session Options
+## Question Options
 
-The startSession method accepts an object defining options to be used when rendering the question images.
+The getQuestion method accepts an object defining options to be used when rendering the question images.
 
 The colors options acccept rgba colors in the form [red, blue, green, alpha]
 
