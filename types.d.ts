@@ -17,7 +17,7 @@ declare module 'mathgames-api' {
           choices: rgbaColor[];
         };
 
-        interface SessionConfig {
+        interface QuestionConfig {
           colors: ColorConfig
         };
 
@@ -39,8 +39,8 @@ declare module 'mathgames-api' {
           on: (event: APIEventType, listener: Function) => APIInstance,
           off: (event: APIEventType, listener: Function) => APIInstance,
           selectSkill: (options: SelectSkillConfig) => void,
-          startSession: (options?: SessionConfig) => void,
-          getQuestion: () => Question,
+          startSession: () => void,
+          getQuestion: (options?: QuestionConfig) => Question,
           answerQuestion: (index: number) => boolean,
           showProgress: () => void,
           showAvailableStandards: () => void,
