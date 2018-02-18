@@ -30,8 +30,9 @@
 //-------- Create MathGames API Instance ---------------------------------------
 
           var api = MathGamesAPI.getInstance({
-              wrapper: document.getElementById('mathgames-api-wrapper'),
-              api_key: '528e1abeb4967cb32b00028e'
+              wrapper: wrapper,
+              api_key: '528e1abeb4967cb32b00028e',
+              debug: true
           });
 
 //-------- Example Game --------------------------------------------------------
@@ -147,7 +148,18 @@
               getNextQuestion: function() {
 
                   // Get the next question from the MathGames API
-                  this.currentQuestion = api.getQuestion();
+                  // Set colours for question and choices
+                  this.currentQuestion = api.getQuestion({
+                      colors: {
+                          question: [12, 33, 169, 1], //blue
+                          choices: [
+                              [169, 12, 12, 1], //red
+                              [11, 21, 161, 1], //blue
+                              [23, 172, 63, 1], //green
+                              [216, 144, 0, 1] //orange
+                          ]
+                      }
+                  });
 
                   this.renderQuestion(this.currentQuestion);
                   this.showPausebutton();
@@ -310,17 +322,7 @@
           // An initial skill has been selected, start the session
           // startSession can only be called after the skill_selected event has occurred
           api.on('SKILL_SELECTED', function() {
-              this.startSession({
-                  colors: {
-                      question: [12, 33, 169, 1], //blue
-                      choices: [
-                          [169, 12, 12, 1], //red
-                          [11, 21, 161, 1], //blue
-                          [23, 172, 63, 1], //green
-                          [216, 144, 0, 1] //orange
-                      ]
-                  }
-              });
+              this.startSession();
           });
 
           // The session is ready to provide questions, using the MathGames API getQuestion method
