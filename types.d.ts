@@ -44,7 +44,6 @@ declare module 'mathgames-api' {
           answerQuestion: (index: number) => boolean,
           showProgress: () => void,
           showAvailableStandards: () => void,
-          resize: () => void,
           endSession: () => void
         };
 
