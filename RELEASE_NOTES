@@ -1,3 +1,9 @@
+###v1.0.3 - 2018-02-20
+
+- remove resize method from api interface
+- resize api dom elements automatically when the wrapper dimensions change
+
+
 ###v1.0.2 - 2018-02-18
 
 - add questions options to use colours in questions
