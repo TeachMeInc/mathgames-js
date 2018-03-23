@@ -1,3 +1,7 @@
+###v1.0.4 - 2018-03-23
+
+- add support for quickplay, apiRoot, uid and skillChangeCallback options
+
 ###v1.0.3 - 2018-02-20
 
 - remove resize method from api interface
