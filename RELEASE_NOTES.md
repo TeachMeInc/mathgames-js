@@ -1,3 +1,8 @@
+###v1.0.5 - 2018-03-27
+
+- Fix grade select on safari
+- Reduce font size of now playing name
+
 ###v1.0.4 - 2018-03-23
 
 - add support for quickplay, apiRoot, uid and skillChangeCallback options
