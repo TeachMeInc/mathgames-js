@@ -1,3 +1,8 @@
+###v1.0.6 - 2018-05-04
+
+- add support for url param options
+- add postMessage for skill change event
+
 ###v1.0.5 - 2018-03-27
 
 - Fix grade select on safari
