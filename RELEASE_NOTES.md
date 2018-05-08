@@ -1,3 +1,7 @@
+###v1.0.7 - 2018-05-08
+
+- Reduce dialog header/title font size for mobile devices
+
 ###v1.0.6 - 2018-05-04
 
 - add support for url param options
