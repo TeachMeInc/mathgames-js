@@ -1,3 +1,7 @@
+###v1.0.8 - 2018-05-08
+
+- Fix bug in quickplay implementation
+
 ###v1.0.7 - 2018-05-08
 
 - Reduce dialog header/title font size for mobile devices
