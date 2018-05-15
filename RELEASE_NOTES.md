@@ -1,3 +1,7 @@
+###v1.0.9 - 2018-05-15
+
+- Add analytics tracking 
+
 ###v1.0.8 - 2018-05-08
 
 - Fix bug in quickplay implementation
