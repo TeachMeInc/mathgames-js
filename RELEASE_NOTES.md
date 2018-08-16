@@ -1,3 +1,7 @@
+###v1.1.0 - 2018-08-14
+
+- Fix bug in older versions of safari
+
 ###v1.0.9 - 2018-05-15
 
 - Add analytics tracking 
