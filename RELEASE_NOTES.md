@@ -1,3 +1,8 @@
+###v1.1.1 - 2018-10-15
+
+- Improve question pool fill
+- Remove analytics tracking
+
 ###v1.1.0 - 2018-08-14
 
 - Fix bug in older versions of safari
