@@ -94,4 +94,5 @@ The display image is for the the display of the question and the choices image a
 3. A nicely designed question interface - it should match the aesthetics of your game and match the requirements described here: https://drive.google.com/file/d/1S3nIj5AqetJ8BEWWDp5UvfYhoAkfVH0k/view?usp=sharing
 4. StartSession -> GetQuestion -> AnswerQuestion flow implemented. 
     4a. User should be able to change skills mid-game via the selectSkill call
-3. Pause button within game while answering questions if applicable
+5. Pause button within game while answering questions if applicable
+6. Please zip up the graphical assets with your game so that we can make promotional material for it.
