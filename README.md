@@ -3,13 +3,6 @@
 MathGames API for Javascript
 
 ## Install
-
-#### NPM
-
-```
-npm install mathgames-js
-```
-
 #### CDN		
 
 The Math Games APi is also available from CDN.				
@@ -17,6 +10,14 @@ The Math Games APi is also available from CDN.
 javascript: https://cdn.mathgames.com/api/dist/latest/mathgames-api.js
 
 css: https://cdn.mathgames.com/api/dist/latest/mathgames-api.css
+
+
+#### NPM
+Please import via the CDN theas the npm package is not maintained not up-to-date.
+```
+npm install mathgames-js
+```
+
 
 ## Methods
 
@@ -86,3 +87,11 @@ The question object has the image data needed to display the question using the 
 ```
 
 The display image is for the the display of the question and the choices image array are used for choice display.  When the user selects a choice in game and the answerQuestion method is called, the index should match the index of the image in the choices array.
+
+#Integration Requirements
+1. 'Play' button on menu that brings up api grade_selection screen
+2. 'Skills' button on menu that brings up the api showAvailableStandards screen
+3. A nicely designed question interface - it should match the aesthetics of your game and match the requirements described here: https://drive.google.com/file/d/1S3nIj5AqetJ8BEWWDp5UvfYhoAkfVH0k/view?usp=sharing
+4. StartSession -> GetQuestion -> AnswerQuestion flow implemented. 
+    4a. User should be able to change skills mid-game via the selectSkill call
+3. Pause button within game while answering questions if applicable
