@@ -88,6 +88,8 @@ The question object has the image data needed to display the question using the 
 
 The display image is for the the display of the question and the choices image array are used for choice display.  When the user selects a choice in game and the answerQuestion method is called, the index should match the index of the image in the choices array.
 
+An example of how to use this image data can be found in the example integration: https://github.com/TeachMeInc/mathgames-js/blob/master/examples/example-cdn/example.html#L87-L105
+
 ## Integration Requirements
 1. 'Play' button on menu that brings up api grade_selection screen
 2. 'Skills' button on menu that brings up the api showAvailableStandards screen
