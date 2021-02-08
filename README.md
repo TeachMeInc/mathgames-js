@@ -88,7 +88,7 @@ The question object has the image data needed to display the question using the 
 
 The display image is for the the display of the question and the choices image array are used for choice display.  When the user selects a choice in game and the answerQuestion method is called, the index should match the index of the image in the choices array.
 
-#Integration Requirements
+## Integration Requirements
 1. 'Play' button on menu that brings up api grade_selection screen
 2. 'Skills' button on menu that brings up the api showAvailableStandards screen
 3. A nicely designed question interface - it should match the aesthetics of your game and match the requirements described here: https://drive.google.com/file/d/1S3nIj5AqetJ8BEWWDp5UvfYhoAkfVH0k/view?usp=sharing
